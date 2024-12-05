@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline Mode</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        img {
+            width: 200px;
+            margin: 20px 0;
+        }
+        textarea {
+            width: 80%;
+            height: 150px;
+            margin-top: 20px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Looks like you lost connection!</h1>
+    <p>Perhaps it is time to meditate for a bit. Or use the form below to reflect on your day:</p>
+    <img src="/patrick.gif" alt="Meditation Image">
+    <textarea id="reflection" placeholder="Write your thoughts here..."></textarea><br>
+    <button onclick="saveReflection()">Save Reflection</button>
+
+    <script>
+        function saveReflection() {
+            const content = document.getElementById('reflection').value;
+            const blob = new Blob([content], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'reflection.txt';
+            link.click();
+        }
+    </script>
+</body>
+</html>
