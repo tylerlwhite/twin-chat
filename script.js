@@ -32,6 +32,8 @@ document.addEventListener('DOMContentLoaded', function () {
     
         // Update the "Digital Twin" header with the submitted name
         updateDigitalTwinHeader(name);
+
+        updateBackgroundColor(color);
     
         // Clear form
         document.getElementById('contactForm').reset();
@@ -40,6 +42,10 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateDigitalTwinHeader(name) {
         const header = document.querySelector('.profile-section h1');
         header.textContent = name || 'Digital Twin'; // Fallback to "Digital Twin" if no name is provided
+    }
+
+    function updateBackgroundColor(color) {
+        document.body.style.backgroundColor = color; // Set the background color of the body
     }
 
     function getInputVal(id) {
