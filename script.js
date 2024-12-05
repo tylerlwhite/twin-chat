@@ -19,17 +19,16 @@ document.addEventListener('DOMContentLoaded', function () {
     
         // Get form values
         const name = getInputVal('name');
-        const email = getInputVal('email');
         const color = getInputVal('color');
         const city = getInputVal('city');
         const enjoyment = getInputVal('current-enjoyment');
         const memory = getInputVal('memory');
     
         // Save to Firebase
-        saveMessage(name, email, color, city, enjoyment, memory);
+        saveMessage(name, color, city, enjoyment, memory);
     
         // Update chat dynamically
-        updateChat(name, email, color, city, enjoyment, memory);
+        updateChat(name, color, city, enjoyment, memory);
     
         // Update the "Digital Twin" header with the submitted name
         updateDigitalTwinHeader(name);
@@ -47,11 +46,10 @@ document.addEventListener('DOMContentLoaded', function () {
         return document.getElementById(id).value;
     }
 
-    function saveMessage(name, email, color, city, enjoyment, memory) {
+    function saveMessage(name, color, city, enjoyment, memory) {
         const newMessageRef = messagesRef.push();
         newMessageRef.set({
             name,
-            email,
             color,
             city,
             enjoyment,
@@ -59,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    function updateChat(name, email, color, city, enjoyment, memory) {
+    function updateChat(name, color, city, enjoyment, memory) {
         const dataDisplay = document.getElementById('dataDisplay');
         dataDisplay.innerHTML = `
             <p>
@@ -76,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
     messagesRef.limitToLast(1).on('value', function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
             const data = childSnapshot.val();
-            updateChat(data.name, data.email, data.color, data.city, data.enjoyment, data.memory);
+            updateChat(data.name, data.color, data.city, data.enjoyment, data.memory);
         });
     });
 });
