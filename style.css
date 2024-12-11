@@ -1,5 +1,15 @@
-body {
+/* body {
     font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    height: 100vh;
+} */
+
+#online-world {
+    font-family: 'Courier New', Courier, monospace, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,11 +18,19 @@ body {
     height: 100vh;
 }
 
+#offline-world {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
 .form-group {
     margin-bottom: 20px;
 }
 
-img{
+img {
     width: 30%;
 }
 
@@ -21,11 +39,11 @@ img{
     text-wrap: wrap;
 }
 
-.container {
+/* .container {
     width: 100%;
     display: flex;
     justify-content: center;
-}
+} */
 
 .form-container, .chat-container {
     min-height: 50vh;
@@ -51,13 +69,63 @@ img{
     justify-content: space-between;
 }
 
-#dataDisplay {
+/* #dataDisplay {
     border: 1px solid #ddd;
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 20px;
     background-color: #1987ff;
     color: #fff;
+} */
+
+/* Chat container */
+#dataDisplay {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between messages */
+    padding: 10px;
+    
+}
+
+.name-bubble {
+    align-self: flex-end; /* Align to the right */
+    background-color: #d8f3dc; /* Light green background for distinction */
+    color: #333; /* Text color */
+    padding: 5px 10px;
+    border-radius: 15px;
+    display: inline-block;
+    max-width: 60%; /* Prevent it from being too wide */
+    word-wrap: break-word; /* Ensure long text breaks properly */
+    font-family: Arial, sans-serif;
+    font-weight: bold; /* Make the name stand out */
+    margin-bottom: 5px; /* Add some spacing before the message */
+}
+
+.message-bubble {
+    align-self: flex-end; /* Align message to the right */
+    background-color: #f0f8ff; /* Light blue background */
+    color: #333; /* Text color */
+    padding: 10px 15px;
+    border-radius: 20px;
+    display: inline-block; /* Make the bubble size fit the content */
+    max-width: 60%; /* Prevent it from being too wide */
+    word-wrap: break-word; /* Ensure long text breaks properly */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    font-family: Arial, sans-serif;
+}
+
+.form-submission-bubble {
+    align-self: flex-start; /* Align to the left */
+    background-color: #e0e7ff; /* Light lavender background */
+    color: #333; /* Text color */
+    padding: 15px 20px;
+    border-radius: 20px;
+    display: inline-block;
+    max-width: 70%; /* Prevent it from being too wide */
+    word-wrap: break-word; /* Ensure long text breaks properly */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    font-family: Arial, sans-serif;
+    margin-bottom: 15px; /* Add spacing below this bubble */
 }
 
 .chat-input {
@@ -89,4 +157,9 @@ img{
     overflow: hidden;
     border: 2px solid #ccc;
     position: relative;
+}
+
+#defaultCanvas0{
+    width: 100px !important;
+    height: 135px !important;
 }

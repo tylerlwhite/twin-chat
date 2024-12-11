@@ -98,47 +98,47 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-const CACHE_NAME = 'offline-cache-v1';
-const OFFLINE_URL = '/offline.html';
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('send-btn').addEventListener('click', function () {
+        const messageInput = document.getElementById('message-input');
+        const dataDisplay = document.getElementById('dataDisplay');
 
-self.addEventListener('install', (event) => {
-    event.waitUntil(
-        caches.open(CACHE_NAME).then((cache) => {
-            console.log('Caching offline resources...');
-            return cache.addAll([
-                OFFLINE_URL,
-                '/patrick.gif'
-            ]);
-        })
-    );
-    self.skipWaiting(); // Activate the new service worker immediately
+        // Ensure the input value is not empty
+        const message = messageInput.value.trim();
+        if (!message) return;
+
+        // Create a name bubble (if it doesn't already exist for this session)
+        if (!document.querySelector('.name-bubble')) {
+            const nameBubble = document.createElement('div');
+            nameBubble.className = 'name-bubble'; // Add the name bubble class
+            nameBubble.textContent = 'SMitty'; // Replace with dynamic name if needed
+            dataDisplay.appendChild(nameBubble);
+        }
+
+        // Create a new div element for the chat bubble
+        const messageBubble = document.createElement('div');
+        messageBubble.className = 'message-bubble'; // Add the chat bubble class
+        messageBubble.textContent = message;
+
+        // Append the new message to the dataDisplay container
+        dataDisplay.appendChild(messageBubble);
+
+        // Clear the input field
+        messageInput.value = '';
+    });
 });
 
-self.addEventListener('fetch', (event) => {
-    // Handle requests
-    event.respondWith(
-        fetch(event.request).catch(() => {
-            // Fallback to the offline page when fetch fails
-            return caches.match(event.request).then((response) => {
-                return response || caches.match(OFFLINE_URL);
-            });
-        })
-    );
-});
+function checkOnlineStatus() {
+    if (navigator.onLine) {
+        document.getElementById('offline-world').style.display = 'none';
+        document.getElementById('online-world').style.display = 'flex';
+    } else {
+        document.getElementById('offline-world').style.display = 'flex';
+        document.getElementById('online-world').style.display = 'none';
+    }
+}
 
-self.addEventListener('activate', (event) => {
-    // Clear old caches
-    event.waitUntil(
-        caches.keys().then((cacheNames) => {
-            return Promise.all(
-                cacheNames.map((cache) => {
-                    if (cache !== CACHE_NAME) {
-                        console.log('Deleting old cache:', cache);
-                        return caches.delete(cache);
-                    }
-                })
-            );
-        })
-    );
-    self.clients.claim(); // Immediately take control of open clients
-});
+window.addEventListener('load', checkOnlineStatus);
+
+window.addEventListener('online', checkOnlineStatus);
+window.addEventListener('offline', checkOnlineStatus);

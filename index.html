@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Digital Twin Generator</title>
@@ -13,45 +14,55 @@
 </head>
 
 <body>
-    <div class="form-container">
-        <h2>Intake Form</h2>
-        <form id="contactForm">
-            <div>
-                <label>Your name:</label>
-                <input type="text" id="name" placeholder="Enter your name">
+    <div id="online-world">
+        <div class="form-container">
+            <h2>Intake Form</h2>
+            <form id="contactForm">
+                <div>
+                    <label>Your name:</label>
+                    <input type="text" id="name" placeholder="Enter your name">
+                </div>
+                <div>
+                    <label>Favorite color:</label>
+                    <input type="color" id="color">
+                </div>
+                <div>
+                    <label>Favorite city:</label>
+                    <input type="text" id="city" placeholder="Los Angeles">
+                </div>
+                <div>
+                    <label>How much are you enjoying your current life?</label>
+                    <input type="range" id="current-enjoyment" min="0" max="10" value="5">
+                </div>
+                <div>
+                    <label>Describe a happy memory from your childhood:</label>
+                    <textarea id="memory" rows="4" cols="50"></textarea>
+                </div>
+                <button type="submit">Submit!</button>
+            </form>
+        </div>
+        <div class="chat-container">
+            <div class="profile-section">
+                <div id="profile-canvas"></div>
+                <h1>Digital Twin</h1>
             </div>
-            <div>
-                <label>Favorite color:</label>
-                <input type="color" id="color">
+            <!-- <p>Hello! This is my profile bio. I am a digital twin avatar of the creator.</p> -->
+            <div id="dataDisplay">
             </div>
-            <div>
-                <label>Favorite city:</label>
-                <input type="text" id="city" placeholder="Los Angeles">
+            <div class="chat-input">
+                <input type="text" id="message-input" placeholder="Type a message...">
+                <button id="send-btn">Send</button>
             </div>
-            <div>
-                <label>How much are you enjoying your current life?</label>
-                <input type="range" id="current-enjoyment" min="0" max="10" value="5">
-            </div>
-            <div>
-                <label>Describe a happy memory from your childhood:</label>
-                <textarea id="memory" rows="4" cols="50"></textarea>
-            </div>
-            <button type="submit">Submit!</button>
-        </form>
+        </div>
+    </div>
+    <div id="offline-world">
+        <h1>Looks like you lost connection!</h1>
+        <p>Perhaps it is time to meditate for a bit. Or use the form below to reflect on your day:</p>
+        <img src="/patrick.gif" alt="Meditation Image">
+        <textarea id="reflection" placeholder="Write your thoughts here..."></textarea><br>
+        <button onclick="saveReflection()">Save Reflection</button>
     </div>
 
-    <div class="chat-container">
-        <div class="profile-section">
-			<div id="profile-canvas"></div>
-            <h1>Digital Twin</h1>
-        </div>
-		<!-- <p>Hello! This is my profile bio. I am a digital twin avatar of the creator.</p> -->
-        <div id="dataDisplay">
-        </div>
-        <div class="chat-input">
-            <input type="text" id="message-input" placeholder="Type a message...">
-            <button id="send-btn">Send</button>
-        </div>
-    </div>
 </body>
+
 </html>
